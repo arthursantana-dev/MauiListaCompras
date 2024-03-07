@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MauiListaCompras.Models;
 using SQLite;
-using MauiListaCompras.Models;
 
 namespace MauiListaCompras.Helpers
 {
@@ -33,9 +28,20 @@ namespace MauiListaCompras.Helpers
             return _connection.QueryAsync<Produto>(sql, produto.Descricao, produto.Preco, produto.Quantidade, produto.Id);
         }
 
+        public Task<List<Produto>> GetAll()
+        {
+            return _connection.Table<Produto>().ToListAsync();
+        }
+
         public Task<int> Delete(Produto produto)
         {
             return _connection.Table<Produto>().DeleteAsync(i => i.Id == produto.Id);
+        }
+
+        public Task<List<Produto>> Search(string query)
+        {
+            string sql = "SELECT * FROM Produto WHERE descricao LIKE '%" + query + "%'";
+            return _connection.QueryAsync<Produto>(sql);
         }
 
     }

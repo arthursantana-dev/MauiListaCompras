@@ -57,6 +57,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <AndroidResource Remove="Views\NovaPasta\**" />
+	  <Compile Remove="Views\NovaPasta\**" />
+	  <EmbeddedResource Remove="Views\NovaPasta\**" />
+	  <MauiCss Remove="Views\NovaPasta\**" />
+	  <MauiXaml Remove="Views\NovaPasta\**" />
+	  <None Remove="Views\NovaPasta\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
@@ -64,7 +73,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Views\" />
+	  <MauiXaml Update="Views\NovoProduto.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>
