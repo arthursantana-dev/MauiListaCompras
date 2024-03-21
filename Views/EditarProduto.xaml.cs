@@ -2,9 +2,9 @@ using MauiListaCompras.Models;
 
 namespace MauiListaCompras.Views;
 
-public partial class NovoProduto : ContentPage
+public partial class EditarProduto : ContentPage
 {
-	public NovoProduto()
+	public EditarProduto()
 	{
 		InitializeComponent();
 	}
@@ -13,18 +13,22 @@ public partial class NovoProduto : ContentPage
     {
 		try
 		{
+            Produto produto_anexado = BindingContext as Produto;
+
 			Produto p = new Produto
 			{
+				Id = produto_anexado.Id,
 				Descricao = text_descricao.Text,
 				Quantidade = Convert.ToDouble(text_quantidade.Text),
 				Preco = Convert.ToDouble(text_preco.Text),
-
+			
 			};
 
-			await App.Db.Insert(p);
-			await DisplayAlert("Sucesso", "Produto Inserido", "OK");
-		} catch (Exception ex) {
-			await DisplayAlert("Ops", ex.Message, "OK");
+			await App.Db.Update(p);
+
+        } catch
+		{
+
 		}
     }
 }
